@@ -48,4 +48,8 @@ if (!songs.ja.find((song) => song.id === "supercell-kimi-no-shiranai-monogatari"
   throw new Error("解密後找不到 Kimi no Shiranai Monogatari");
 }
 
+if (!songs.ja.find((song) => song.id === "yumeko-ayanos-happiness-theory")) {
+  throw new Error("解密後找不到 アヤノの幸福理論");
+}
+
 console.log("test_encryption.js ok");
