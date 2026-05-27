@@ -40,4 +40,8 @@ if (!songs.ja.find((song) => song.id === "kenshi-yonezu-lemon")) {
   throw new Error("解密後找不到 Lemon");
 }
 
+if (!songs.ja.find((song) => song.id === "toa-suzume")) {
+  throw new Error("解密後找不到 すずめ");
+}
+
 console.log("test_encryption.js ok");
