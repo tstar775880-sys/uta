@@ -537,6 +537,10 @@ function compareSongs(language, a, b) {
 }
 
 function getSortText(song) {
+  if (song.sortTitle) {
+    return song.sortTitle;
+  }
+
   if (song.language === "zh") {
     return song.title?.zh || song.title?.original || "";
   }
