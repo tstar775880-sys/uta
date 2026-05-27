@@ -75,7 +75,7 @@ node tools/encrypt_songs.js uta2026
   lyrics: [
     {
       original: "日文歌詞",
-      kana: "平假名",
+      kana: "片假名",
       romaji: "羅馬拼音",
       zh: "中文翻譯"
     }

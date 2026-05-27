@@ -14,7 +14,7 @@ const LYRIC_LABELS = {
   ],
   ja: [
     ["original", "日文"],
-    ["kana", "平假名"],
+    ["kana", "片假名"],
     ["romaji", "羅馬拼音"],
     ["zh", "中文"]
   ]
