@@ -13,7 +13,7 @@ const iv = Buffer.from(payload.iv, "base64");
 const data = Buffer.from(payload.data, "base64");
 const encrypted = data.subarray(0, data.length - 16);
 const tag = data.subarray(data.length - 16);
-const key = crypto.pbkdf2Sync("147741", salt, payload.iterations, 32, "sha256");
+const key = crypto.pbkdf2Sync("14741", salt, payload.iterations, 32, "sha256");
 const decipher = crypto.createDecipheriv("aes-256-gcm", key, iv);
 decipher.setAuthTag(tag);
 
@@ -34,6 +34,10 @@ if (!songs.ja.find((song) => song.id === "fripside-only-my-railgun")) {
 
 if (!songs.ja.find((song) => song.id === "hayashibara-osorezan-revoir")) {
   throw new Error("解密後找不到 恐山ル・ヴォワール");
+}
+
+if (!songs.ja.find((song) => song.id === "kenshi-yonezu-lemon")) {
+  throw new Error("解密後找不到 Lemon");
 }
 
 console.log("test_encryption.js ok");

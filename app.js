@@ -206,10 +206,59 @@ const JAPANESE_READING_MAP = {
   頭上: "zujou",
   国: "kuni",
   地蔵: "jizou",
+  夢: "yume",
+  未: "ima",
+  忘: "wasure",
+  物: "mono",
+  取: "tori",
+  帰: "kaeru",
+  古: "furu",
+  埃: "hokori",
+  払: "harau",
+  戻: "modora",
+  最後: "saigo",
+  教: "oshie",
+  隠: "kakushi",
+  昏: "kurai",
+  永遠: "eien",
+  以上: "ijou",
+  悲: "kanashi",
+  苦: "kurushi",
+  残: "nokori",
+  苦い: "nigai",
+  匂: "nioi",
+  雨: "ame",
+  降: "furi",
+  背: "se",
+  輪郭: "rinkaku",
+  鮮明: "senmei",
+  覚: "oboe",
+  受: "uke",
+  溢: "afure",
+  何: "nani",
+  横顔: "yokogao",
+  同: "onaji",
+  様: "you",
+  淋: "sabishi",
+  中: "naka",
+  願: "negau",
+  恋: "koi",
+  息: "iki",
+  側: "soba",
+  確: "tashika",
+  分: "wake",
+  果実: "kajitsu",
+  片方: "katahou",
   オー: "o-",
   ル: "ru",
   ヴォワール: "vowa-ru",
   ブロマイド: "buromaido"
+};
+
+const SONG_SORTERS = {
+  zh: new Intl.Collator("zh-Hant-u-co-zhuyin", { numeric: true, sensitivity: "base" }),
+  en: new Intl.Collator("en", { numeric: true, sensitivity: "base" }),
+  ja: new Intl.Collator("ja", { numeric: true, sensitivity: "base" })
 };
 
 let SONGS = {
@@ -372,7 +421,7 @@ function renderSongList() {
 }
 
 function getFilteredSongs() {
-  const songs = SONGS[activeLanguage];
+  const songs = getSortedSongs(activeLanguage);
   const query = normalizeSearchText(searchQuery);
 
   if (!query) {
@@ -390,6 +439,19 @@ function getFilteredSongs() {
     const haystack = normalizeSearchText(fields.filter(Boolean).join(" "));
     return haystack.includes(query) || isFuzzyMatch(haystack, query);
   });
+}
+
+function getSortedSongs(language) {
+  const sorter = SONG_SORTERS[language] || SONG_SORTERS.en;
+  return [...SONGS[language]].sort((a, b) => sorter.compare(getSortText(a), getSortText(b)));
+}
+
+function getSortText(song) {
+  if (song.language === "zh") {
+    return song.title?.zh || song.title?.original || "";
+  }
+
+  return song.title?.original || song.title?.zh || "";
 }
 
 function normalizeSearchText(value) {
