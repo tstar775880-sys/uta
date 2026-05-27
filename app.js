@@ -19,6 +19,49 @@ const LYRIC_LABELS = {
   ]
 };
 
+const JAPANESE_READING_MAP = {
+  私: "watashi",
+  未熟: "mijuku",
+  聴: "ki",
+  有難: "arigatou",
+  少: "suko",
+  大人: "otona",
+  本当: "hontou",
+  前: "mae",
+  向: "mu",
+  書: "ka",
+  他: "hoka",
+  誰: "dare",
+  支: "sasae",
+  強: "tsuyo",
+  拝啓: "haikei",
+  未来: "mirai",
+  今: "ima",
+  生: "i",
+  好: "su",
+  勝手: "katte",
+  盗: "nusun",
+  貴方: "anata",
+  上手: "jouzu",
+  生き方: "ikikata",
+  言: "i",
+  無駄: "muda",
+  意味: "imi",
+  離: "hana",
+  悲: "kana",
+  怒: "okora",
+  過去: "kako",
+  夢見: "yumemi",
+  叶: "kanae",
+  情: "nasa",
+  歌: "uta",
+  綺麗: "kirei",
+  世界: "sekai",
+  広: "hiro",
+  幸: "shiawase",
+  準備: "junbi"
+};
+
 let SONGS = {
   zh: [],
   en: [],
@@ -294,11 +337,16 @@ passwordForm.addEventListener("submit", handlePasswordSubmit);
 function renderRubyText(container, row) {
   const parts = Array.isArray(row.ruby)
     ? row.ruby
-    : [{ text: row.original || "（尚未填寫）", reading: row.romaji || "" }];
+    : buildJapaneseRubyParts(row.original || "（尚未填寫）");
 
   parts.forEach((part) => {
     if (typeof part === "string") {
       container.append(document.createTextNode(part));
+      return;
+    }
+
+    if (isHiraganaOnly(part.text) || !part.reading) {
+      container.append(document.createTextNode(part.text));
       return;
     }
 
@@ -310,4 +358,25 @@ function renderRubyText(container, row) {
     ruby.append(rb, rt);
     container.append(ruby);
   });
+}
+
+function buildJapaneseRubyParts(text) {
+  const parts = [];
+  const pattern = /[\u3400-\u9fff\u30a0-\u30ff]+|[^\u3400-\u9fff\u30a0-\u30ff]+/gu;
+
+  for (const match of text.matchAll(pattern)) {
+    const value = match[0];
+
+    if (/^[\u3400-\u9fff\u30a0-\u30ff]+$/u.test(value)) {
+      parts.push({ text: value, reading: JAPANESE_READING_MAP[value] || "" });
+    } else {
+      parts.push(value);
+    }
+  }
+
+  return parts;
+}
+
+function isHiraganaOnly(value) {
+  return /^[\u3040-\u309fー]+$/u.test(value);
 }
