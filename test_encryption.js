@@ -44,4 +44,8 @@ if (!songs.ja.find((song) => song.id === "toa-suzume")) {
   throw new Error("解密後找不到 すずめ");
 }
 
+if (!songs.ja.find((song) => song.id === "supercell-kimi-no-shiranai-monogatari")) {
+  throw new Error("解密後找不到 Kimi no Shiranai Monogatari");
+}
+
 console.log("test_encryption.js ok");

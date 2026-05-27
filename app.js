@@ -283,6 +283,47 @@ const JAPANESE_READING_MAP = {
   気: "ki",
   打: "uchi",
   鳴: "narasu",
+  突然: "totsuzen",
+  上: "a",
+  今夜: "konya",
+  良: "ii",
+  明: "aka",
+  道: "michi",
+  抱: "kakae",
+  込: "kon",
+  孤独: "kodoku",
+  不安: "fuan",
+  押: "oshi",
+  真: "ma",
+  夜空: "yozora",
+  降: "furu",
+  願: "onegai",
+  驚: "odoroka",
+  指: "yubi",
+  夏: "natsu",
+  三角: "sankaku",
+  織姫: "orihime",
+  様: "sama",
+  彦星: "hikoboshi",
+  楽: "tano",
+  隣: "tonari",
+  臆病: "okubyou",
+  興味: "kyoumi",
+  刺: "sasu",
+  増: "mashi",
+  声: "koe",
+  真実: "shinjitsu",
+  残酷: "zankoku",
+  二度: "nido",
+  戻: "modore",
+  笑: "waratta",
+  顔: "kao",
+  怒: "okotta",
+  大好: "daisuki",
+  秘密: "himitsu",
+  夜: "yoru",
+  遠: "tooi",
+  無邪気: "mujaki",
   オー: "o-",
   ル: "ru",
   ヴォワール: "vowa-ru",
@@ -476,8 +517,23 @@ function getFilteredSongs() {
 }
 
 function getSortedSongs(language) {
+  return [...SONGS[language]].sort((a, b) => compareSongs(language, a, b));
+}
+
+function compareSongs(language, a, b) {
+  if (language === "ja") {
+    const aLatin = startsWithLatin(getSortText(a));
+    const bLatin = startsWithLatin(getSortText(b));
+
+    if (aLatin !== bLatin) {
+      return aLatin ? -1 : 1;
+    }
+
+    return (aLatin ? SONG_SORTERS.en : SONG_SORTERS.ja).compare(getSortText(a), getSortText(b));
+  }
+
   const sorter = SONG_SORTERS[language] || SONG_SORTERS.en;
-  return [...SONGS[language]].sort((a, b) => sorter.compare(getSortText(a), getSortText(b)));
+  return sorter.compare(getSortText(a), getSortText(b));
 }
 
 function getSortText(song) {
@@ -486,6 +542,10 @@ function getSortText(song) {
   }
 
   return song.title?.original || song.title?.zh || "";
+}
+
+function startsWithLatin(value) {
+  return /^[a-z0-9]/i.test(String(value).trim());
 }
 
 function normalizeSearchText(value) {
