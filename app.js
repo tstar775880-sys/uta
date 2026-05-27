@@ -14,7 +14,6 @@ const LYRIC_LABELS = {
   ],
   ja: [
     ["original", "日文"],
-    ["kana", "片假名"],
     ["romaji", "羅馬拼音"],
     ["zh", "中文"]
   ]
@@ -192,7 +191,7 @@ function renderSelectedSong() {
 
   selectedTitle.textContent = displayTitle(song);
   selectedArtist.textContent = displayArtist(song);
-  lyricsMode.textContent = activeLanguage === "ja" ? "四行對照" : activeLanguage === "en" ? "雙語對照" : "中文歌詞";
+  lyricsMode.textContent = activeLanguage === "ja" ? "三行對照" : activeLanguage === "en" ? "雙語對照" : "中文歌詞";
   lyricsContent.className = "lyrics-content";
   lyricsContent.innerHTML = "";
 
@@ -217,7 +216,13 @@ function renderSelectedSong() {
 
       const textElement = document.createElement("span");
       textElement.className = "line-text";
-      textElement.textContent = row[key] || "（尚未填寫）";
+
+      if (activeLanguage === "ja" && key === "original" && Array.isArray(row.ruby)) {
+        textElement.classList.add("ruby-lyric");
+        renderRubyText(textElement, row.ruby);
+      } else {
+        textElement.textContent = row[key] || "（尚未填寫）";
+      }
 
       line.append(labelElement, textElement);
       rowElement.append(line);
@@ -232,3 +237,20 @@ tabButtons.forEach((button) => {
 });
 
 passwordForm.addEventListener("submit", handlePasswordSubmit);
+
+function renderRubyText(container, parts) {
+  parts.forEach((part) => {
+    if (typeof part === "string") {
+      container.append(document.createTextNode(part));
+      return;
+    }
+
+    const ruby = document.createElement("ruby");
+    const rb = document.createElement("rb");
+    const rt = document.createElement("rt");
+    rb.textContent = part.text;
+    rt.textContent = part.reading;
+    ruby.append(rb, rt);
+    container.append(ruby);
+  });
+}

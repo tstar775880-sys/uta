@@ -21,9 +21,21 @@ if (!japaneseSong) {
 }
 
 for (const row of japaneseSong.lyrics) {
-  for (const field of ["original", "kana", "romaji", "zh"]) {
+  for (const field of ["original", "romaji", "zh"]) {
     if (typeof row[field] !== "string" || row[field].trim() === "") {
       throw new Error(`日文歌詞每列都必須包含 ${field}`);
+    }
+  }
+
+  if (row.ruby) {
+    if (!Array.isArray(row.ruby)) {
+      throw new Error("ruby 必須是陣列");
+    }
+
+    for (const part of row.ruby) {
+      if (typeof part !== "string" && (!part.text || !part.reading)) {
+        throw new Error("ruby 物件必須包含 text 與 reading");
+      }
     }
   }
 }

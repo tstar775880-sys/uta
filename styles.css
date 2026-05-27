@@ -281,6 +281,26 @@ button {
   overflow-wrap: anywhere;
 }
 
+.ruby-lyric {
+  display: block;
+  padding-top: 0.45rem;
+  font-size: 1.08rem;
+  line-height: 2.15;
+}
+
+.ruby-lyric ruby {
+  ruby-position: over;
+  margin-right: 0.08em;
+}
+
+.ruby-lyric rt {
+  color: var(--accent-strong);
+  font-size: 0.46em;
+  line-height: 1;
+  letter-spacing: 0;
+  text-align: center;
+}
+
 .notice {
   padding: 12px 14px;
   border: 1px solid #d8c2a3;

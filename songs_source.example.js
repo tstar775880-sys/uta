@@ -17,13 +17,16 @@ const SONGS = {
       lyrics: [
         {
           original: "（請填入日文原文歌詞第 1 句）",
-          kana: "（請填入片假名第 1 句）",
           romaji: "（請填入羅馬拼音第 1 句）",
-          zh: "（請填入中文翻譯第 1 句）"
+          zh: "（請填入中文翻譯第 1 句）",
+          ruby: [
+            { text: "今", reading: "ima" },
+            { text: "ここ", reading: "koko" },
+            { text: "で", reading: "de" }
+          ]
         },
         {
           original: "（請填入日文原文歌詞第 2 句）",
-          kana: "（請填入片假名第 2 句）",
           romaji: "（請填入羅馬拼音第 2 句）",
           zh: "（請填入中文翻譯第 2 句）"
         }

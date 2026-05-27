@@ -75,9 +75,13 @@ node tools/encrypt_songs.js uta2026
   lyrics: [
     {
       original: "日文歌詞",
-      kana: "片假名",
       romaji: "羅馬拼音",
-      zh: "中文翻譯"
+      zh: "中文翻譯",
+      ruby: [
+        { text: "今", reading: "ima" },
+        { text: "ここ", reading: "koko" },
+        { text: "で", reading: "de" }
+      ]
     }
   ]
 }
