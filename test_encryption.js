@@ -28,4 +28,8 @@ if (!songs.ja.find((song) => song.id === "yuika-17-sai-no-uta")) {
   throw new Error("解密後找不到日文示範歌曲");
 }
 
+if (!songs.ja.find((song) => song.id === "fripside-only-my-railgun")) {
+  throw new Error("解密後找不到 only my railgun");
+}
+
 console.log("test_encryption.js ok");

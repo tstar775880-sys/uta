@@ -270,8 +270,8 @@ button {
 
 .lyrics-content {
   display: grid;
-  gap: 12px;
-  padding: 18px;
+  gap: 14px;
+  padding: 20px;
 }
 
 .empty-state {
@@ -283,8 +283,8 @@ button {
 
 .lyric-row {
   display: grid;
-  gap: 6px;
-  padding: 14px;
+  gap: 8px;
+  padding: 16px;
   border: 1px solid var(--line);
   border-radius: 7px;
   background: #fbfcfc;
@@ -292,27 +292,28 @@ button {
 
 .lyric-line {
   display: grid;
-  grid-template-columns: 78px minmax(0, 1fr);
-  gap: 10px;
+  grid-template-columns: 86px minmax(0, 1fr);
+  gap: 12px;
   align-items: start;
-  line-height: 1.75;
+  line-height: 1.85;
 }
 
 .line-label {
   color: var(--muted);
-  font-size: 0.84rem;
+  font-size: 0.95rem;
 }
 
 .line-text {
   min-width: 0;
   overflow-wrap: anywhere;
+  font-size: 1.08rem;
 }
 
 .ruby-lyric {
   display: block;
-  padding-top: 0.45rem;
-  font-size: 1.08rem;
-  line-height: 2.15;
+  padding-top: 0.7rem;
+  font-size: 1.28rem;
+  line-height: 2.25;
 }
 
 .ruby-lyric ruby {
@@ -322,7 +323,7 @@ button {
 
 .ruby-lyric rt {
   color: var(--accent-strong);
-  font-size: 0.46em;
+  font-size: 0.58em;
   line-height: 1;
   letter-spacing: 0;
   text-align: center;
