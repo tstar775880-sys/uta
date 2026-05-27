@@ -32,4 +32,8 @@ if (!songs.ja.find((song) => song.id === "fripside-only-my-railgun")) {
   throw new Error("解密後找不到 only my railgun");
 }
 
+if (!songs.ja.find((song) => song.id === "hayashibara-osorezan-revoir")) {
+  throw new Error("解密後找不到 恐山ル・ヴォワール");
+}
+
 console.log("test_encryption.js ok");
