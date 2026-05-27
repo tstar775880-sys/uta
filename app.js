@@ -263,9 +263,9 @@ function renderSelectedSong() {
       const textElement = document.createElement("span");
       textElement.className = "line-text";
 
-      if (activeLanguage === "ja" && key === "original" && Array.isArray(row.ruby)) {
+      if (activeLanguage === "ja" && key === "original") {
         textElement.classList.add("ruby-lyric");
-        renderRubyText(textElement, row.ruby);
+        renderRubyText(textElement, row);
       } else {
         textElement.textContent = row[key] || "（尚未填寫）";
       }
@@ -291,7 +291,11 @@ songSearch.addEventListener("input", () => {
 
 passwordForm.addEventListener("submit", handlePasswordSubmit);
 
-function renderRubyText(container, parts) {
+function renderRubyText(container, row) {
+  const parts = Array.isArray(row.ruby)
+    ? row.ruby
+    : [{ text: row.original || "（尚未填寫）", reading: row.romaji || "" }];
+
   parts.forEach((part) => {
     if (typeof part === "string") {
       container.append(document.createTextNode(part));
