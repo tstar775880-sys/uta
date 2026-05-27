@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Uta 歌詞整理</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <section id="lock-screen" class="lock-screen">
+    <form id="password-form" class="lock-box">
+      <p class="eyebrow">Uta</p>
+      <h1>歌詞整理</h1>
+      <label for="site-password">密碼</label>
+      <input id="site-password" name="site-password" type="password" autocomplete="current-password" required>
+      <button type="submit">進入</button>
+      <p id="password-error" class="password-error" aria-live="polite"></p>
+    </form>
+  </section>
+
+  <div id="app-root" class="is-locked" aria-hidden="true">
+    <header class="app-header">
+      <div>
+        <p class="eyebrow">Uta</p>
+        <h1>歌詞整理</h1>
+      </div>
+      <p class="header-note">依語言分類歌曲，並用逐句對照保存歌詞。</p>
+    </header>
+
+    <main class="app-shell">
+      <nav class="tabs" aria-label="歌曲語言分類">
+        <button class="tab-button is-active" type="button" data-tab="zh">中文歌</button>
+        <button class="tab-button" type="button" data-tab="en">英文歌</button>
+        <button class="tab-button" type="button" data-tab="ja">日文歌</button>
+      </nav>
+
+      <section class="workspace">
+        <aside class="song-panel">
+          <div class="panel-heading">
+            <h2 id="song-list-title">中文歌清單</h2>
+            <span id="song-count">0 首</span>
+          </div>
+          <div id="song-list" class="song-list" role="list"></div>
+        </aside>
+
+        <article class="lyrics-panel">
+          <div class="lyrics-heading">
+            <div>
+              <p id="selected-language" class="eyebrow">日文歌</p>
+              <h2 id="selected-title">請選擇歌曲</h2>
+              <p id="selected-artist" class="artist-line"></p>
+            </div>
+            <span id="lyrics-mode" class="mode-label"></span>
+          </div>
+
+          <div id="lyrics-content" class="lyrics-content empty-state">
+            請先從左側清單選擇一首歌。
+          </div>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <script src="encrypted_songs.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
