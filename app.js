@@ -26,6 +26,7 @@ let SONGS = {
 };
 let activeLanguage = "zh";
 let activeSongId = null;
+let searchQuery = "";
 
 const lockScreen = document.querySelector("#lock-screen");
 const appRoot = document.querySelector("#app-root");
@@ -36,6 +37,7 @@ const tabButtons = document.querySelectorAll(".tab-button");
 const songList = document.querySelector("#song-list");
 const songListTitle = document.querySelector("#song-list-title");
 const songCount = document.querySelector("#song-count");
+const songSearch = document.querySelector("#song-search");
 const selectedLanguage = document.querySelector("#selected-language");
 const selectedTitle = document.querySelector("#selected-title");
 const selectedArtist = document.querySelector("#selected-artist");
@@ -126,7 +128,7 @@ function displayArtist(song) {
 
 function setActiveLanguage(language) {
   activeLanguage = language;
-  activeSongId = SONGS[language][0]?.id ?? null;
+  activeSongId = getFilteredSongs()[0]?.id ?? null;
 
   tabButtons.forEach((button) => {
     button.classList.toggle("is-active", button.dataset.tab === language);
@@ -137,15 +139,15 @@ function setActiveLanguage(language) {
 }
 
 function renderSongList() {
-  const songs = SONGS[activeLanguage];
+  const songs = getFilteredSongs();
   songListTitle.textContent = `${LANGUAGE_LABELS[activeLanguage]}清單`;
-  songCount.textContent = `${songs.length} 首`;
+  songCount.textContent = `${songs.length} / ${SONGS[activeLanguage].length} 首`;
   songList.innerHTML = "";
 
   if (songs.length === 0) {
     const empty = document.createElement("p");
     empty.className = "notice";
-    empty.textContent = "目前沒有歌曲資料。";
+    empty.textContent = searchQuery ? "找不到符合的歌曲。" : "目前沒有歌曲資料。";
     songList.append(empty);
     return;
   }
@@ -174,6 +176,50 @@ function renderSongList() {
 
     songList.append(button);
   });
+}
+
+function getFilteredSongs() {
+  const songs = SONGS[activeLanguage];
+  const query = normalizeSearchText(searchQuery);
+
+  if (!query) {
+    return songs;
+  }
+
+  return songs.filter((song) => {
+    const fields = [
+      song.id,
+      song.title?.original,
+      song.title?.zh,
+      song.artist?.original,
+      song.artist?.zh
+    ];
+    const haystack = normalizeSearchText(fields.filter(Boolean).join(" "));
+    return haystack.includes(query) || isFuzzyMatch(haystack, query);
+  });
+}
+
+function normalizeSearchText(value) {
+  return String(value)
+    .toLowerCase()
+    .normalize("NFKC")
+    .replace(/\s+/g, "");
+}
+
+function isFuzzyMatch(haystack, query) {
+  let queryIndex = 0;
+
+  for (const char of haystack) {
+    if (char === query[queryIndex]) {
+      queryIndex += 1;
+    }
+
+    if (queryIndex === query.length) {
+      return true;
+    }
+  }
+
+  return false;
 }
 
 function renderSelectedSong() {
@@ -234,6 +280,13 @@ function renderSelectedSong() {
 
 tabButtons.forEach((button) => {
   button.addEventListener("click", () => setActiveLanguage(button.dataset.tab));
+});
+
+songSearch.addEventListener("input", () => {
+  searchQuery = songSearch.value;
+  activeSongId = getFilteredSongs()[0]?.id ?? null;
+  renderSongList();
+  renderSelectedSong();
 });
 
 passwordForm.addEventListener("submit", handlePasswordSubmit);

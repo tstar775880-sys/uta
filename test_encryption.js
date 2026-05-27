@@ -13,7 +13,7 @@ const iv = Buffer.from(payload.iv, "base64");
 const data = Buffer.from(payload.data, "base64");
 const encrypted = data.subarray(0, data.length - 16);
 const tag = data.subarray(data.length - 16);
-const key = crypto.pbkdf2Sync("uta2026", salt, payload.iterations, 32, "sha256");
+const key = crypto.pbkdf2Sync("147741", salt, payload.iterations, 32, "sha256");
 const decipher = crypto.createDecipheriv("aes-256-gcm", key, iv);
 decipher.setAuthTag(tag);
 

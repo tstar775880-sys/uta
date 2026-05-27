@@ -9,7 +9,7 @@
 目前範例密文的預設密碼是：
 
 ```text
-uta2026
+147741
 ```
 
 目前網站會用密碼解密 `encrypted_songs.js`，不會把歌詞明文放在 GitHub Pages 上。
@@ -21,7 +21,7 @@ uta2026
 3. 執行加密：
 
 ```bash
-node tools/encrypt_songs.js uta2026
+node tools/encrypt_songs.js 147741
 ```
 
 4. GitHub 只提交 `encrypted_songs.js`，不要提交 `songs_source.js`。
