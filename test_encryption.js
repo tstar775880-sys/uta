@@ -68,4 +68,8 @@ if (!songs.ja.find((song) => song.id === "daoko-kenshi-yonezu-uchiage-hanabi")) 
   throw new Error("解密後找不到 打上花火");
 }
 
+if (!songs.ja.find((song) => song.id === "secret-base-kimi-ga-kureta-mono")) {
+  throw new Error("解密後找不到 secret base");
+}
+
 console.log("test_encryption.js ok");
