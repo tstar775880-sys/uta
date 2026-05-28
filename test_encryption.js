@@ -84,4 +84,8 @@ if (!songs.ja.find((song) => song.id === "honeyworks-kawaikute-gomen")) {
   throw new Error("解密後找不到 可愛くてごめん");
 }
 
+if (!songs.ja.find((song) => song.id === "yoasobi-gunjou")) {
+  throw new Error("解密後找不到 群青");
+}
+
 console.log("test_encryption.js ok");
