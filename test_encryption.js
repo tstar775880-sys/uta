@@ -104,4 +104,8 @@ if (!songs.ja.find((song) => song.id === "yoasobi-shukufuku")) {
   throw new Error("解密後找不到 祝福");
 }
 
+if (!songs.ja.find((song) => song.id === "lisa-gurenge")) {
+  throw new Error("解密後找不到 紅蓮華");
+}
+
 console.log("test_encryption.js ok");
