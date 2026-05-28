@@ -108,4 +108,8 @@ if (!songs.ja.find((song) => song.id === "lisa-gurenge")) {
   throw new Error("解密後找不到 紅蓮華");
 }
 
+if (!songs.ja.find((song) => song.id === "yoasobi-halzion")) {
+  throw new Error("解密後找不到 ハルジオン");
+}
+
 console.log("test_encryption.js ok");
