@@ -88,4 +88,8 @@ if (!songs.ja.find((song) => song.id === "yoasobi-gunjou")) {
   throw new Error("解密後找不到 群青");
 }
 
+if (!songs.ja.find((song) => song.id === "fripside-level5-judgelight")) {
+  throw new Error("解密後找不到 LEVEL5-judgelight-");
+}
+
 console.log("test_encryption.js ok");
