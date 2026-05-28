@@ -72,4 +72,8 @@ if (!songs.ja.find((song) => song.id === "secret-base-kimi-ga-kureta-mono")) {
   throw new Error("解密後找不到 secret base");
 }
 
+if (!songs.ja.find((song) => song.id === "sakurakou-keionbu-dont-say-lazy")) {
+  throw new Error("解密後找不到 Don't say lazy");
+}
+
 console.log("test_encryption.js ok");
