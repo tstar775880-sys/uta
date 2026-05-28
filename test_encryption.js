@@ -76,4 +76,8 @@ if (!songs.ja.find((song) => song.id === "sakurakou-keionbu-dont-say-lazy")) {
   throw new Error("解密後找不到 Don't say lazy");
 }
 
+if (!songs.en.find((song) => song.id === "dave-rodgers-deja-vu")) {
+  throw new Error("解密後找不到 Deja Vu");
+}
+
 console.log("test_encryption.js ok");
