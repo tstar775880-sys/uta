@@ -96,4 +96,8 @@ if (!songs.ja.find((song) => song.id === "hatsune-miku-senbonzakura")) {
   throw new Error("解密後找不到 千本桜");
 }
 
+if (!songs.ja.find((song) => song.id === "radwimps-zenzenzense-original-ver")) {
+  throw new Error("解密後找不到 前前前世");
+}
+
 console.log("test_encryption.js ok");
