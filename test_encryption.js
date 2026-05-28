@@ -112,4 +112,8 @@ if (!songs.ja.find((song) => song.id === "yoasobi-halzion")) {
   throw new Error("解密後找不到 ハルジオン");
 }
 
+if (!songs.ja.find((song) => song.id === "yoasobi-idol")) {
+  throw new Error("解密後找不到 アイドル");
+}
+
 console.log("test_encryption.js ok");
