@@ -21,9 +21,13 @@ if (!japaneseSong) {
 }
 
 for (const row of japaneseSong.lyrics) {
-  for (const field of ["original", "romaji", "zh"]) {
-    if (typeof row[field] !== "string" || row[field].trim() === "") {
-      throw new Error(`日文歌詞每列都必須包含 ${field}`);
+  if (typeof row.original !== "string" || row.original.trim() === "") {
+    throw new Error("日文歌詞每列都必須包含 original");
+  }
+
+  for (const field of ["romaji", "zh"]) {
+    if (row[field] !== undefined && typeof row[field] !== "string") {
+      throw new Error(`日文歌詞 ${field} 必須是字串`);
     }
   }
 
