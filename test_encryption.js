@@ -100,4 +100,8 @@ if (!songs.ja.find((song) => song.id === "radwimps-zenzenzense-original-ver")) {
   throw new Error("解密後找不到 前前前世");
 }
 
+if (!songs.ja.find((song) => song.id === "yoasobi-shukufuku")) {
+  throw new Error("解密後找不到 祝福");
+}
+
 console.log("test_encryption.js ok");
