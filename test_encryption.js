@@ -64,4 +64,8 @@ if (!songs.ja.find((song) => song.id === "tayori-kaze-no-tayori")) {
   throw new Error("解密後找不到 風のたより");
 }
 
+if (!songs.ja.find((song) => song.id === "daoko-kenshi-yonezu-uchiage-hanabi")) {
+  throw new Error("解密後找不到 打上花火");
+}
+
 console.log("test_encryption.js ok");
