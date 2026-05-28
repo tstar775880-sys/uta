@@ -92,4 +92,8 @@ if (!songs.ja.find((song) => song.id === "fripside-level5-judgelight")) {
   throw new Error("解密後找不到 LEVEL5-judgelight-");
 }
 
+if (!songs.ja.find((song) => song.id === "hatsune-miku-senbonzakura")) {
+  throw new Error("解密後找不到 千本桜");
+}
+
 console.log("test_encryption.js ok");
