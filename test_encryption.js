@@ -52,4 +52,8 @@ if (!songs.ja.find((song) => song.id === "yumeko-ayanos-happiness-theory")) {
   throw new Error("解密後找不到 アヤノの幸福理論");
 }
 
+if (!songs.ja.find((song) => song.id === "yuika-suki-dakara")) {
+  throw new Error("解密後找不到 好きだから。");
+}
+
 console.log("test_encryption.js ok");
