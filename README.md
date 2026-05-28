@@ -28,6 +28,16 @@ node tools/encrypt_songs.js 14741
 
 `songs_source.js` 已經加到 `.gitignore`，避免不小心把明文歌詞提交上去。若要換密碼，改用新密碼重新執行加密即可。
 
+## 歌詞整理規則
+
+- 明文歌詞只放在本機 `songs_source.js`，不可提交到 GitHub。
+- GitHub 只提交加密後的 `encrypted_songs.js`。
+- 日文歌若有日文原文但缺羅馬拼音或中文翻譯，要協助補上。
+- 日文歌若已有羅馬拼音或中文翻譯，要對照原文做合理性檢查。
+- 英文歌若有英文原文但缺中文翻譯，要協助補上。
+- 英文歌若已有中文翻譯，要對照原文做合理性檢查。
+- 歌手欄位 `artist` 統一放原唱或主要發行歌手；翻唱或偏好版本可另放備註欄位。
+
 ## GitHub Pages
 
 此專案已加入 `.github/workflows/pages.yml`。推送到 `main` 分支後，可以到 GitHub repository 的 Pages 設定，把來源改成 GitHub Actions，由 workflow 發佈網頁。

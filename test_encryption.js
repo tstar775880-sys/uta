@@ -60,4 +60,8 @@ if (!songs.ja.find((song) => song.id === "yoasobi-ano-yume-wo-nazotte")) {
   throw new Error("解密後找不到 あの夢をなぞって");
 }
 
+if (!songs.ja.find((song) => song.id === "tayori-kaze-no-tayori")) {
+  throw new Error("解密後找不到 風のたより");
+}
+
 console.log("test_encryption.js ok");
