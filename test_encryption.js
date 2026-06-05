@@ -116,4 +116,16 @@ if (!songs.ja.find((song) => song.id === "yoasobi-idol")) {
   throw new Error("解密後找不到 アイドル");
 }
 
+if (!songs.ja.find((song) => song.id === "kafu-dakishimeru-made")) {
+  throw new Error("解密後找不到 だきしめるまで。");
+}
+
+if (!songs.ja.find((song) => song.id === "hatsune-miku-inochi-ni-kirawareteiru")) {
+  throw new Error("解密後找不到 命に嫌われている。");
+}
+
+if (!songs.ja.find((song) => song.id === "cliff-edge-endless-tears")) {
+  throw new Error("解密後找不到 Endless Tears");
+}
+
 console.log("test_encryption.js ok");
