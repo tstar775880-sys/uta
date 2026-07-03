@@ -132,4 +132,8 @@ if (!songs.ja.find((song) => song.id === "tuki-bansanka")) {
   throw new Error("解密後找不到 晩餐歌");
 }
 
+if (!songs.ja.find((song) => song.id === "mimi-ima-wa-iindayo")) {
+  throw new Error("解密後找不到 今はいいんだよ。");
+}
+
 console.log("test_encryption.js ok");
