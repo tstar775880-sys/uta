@@ -128,4 +128,8 @@ if (!songs.ja.find((song) => song.id === "cliff-edge-endless-tears")) {
   throw new Error("解密後找不到 Endless Tears");
 }
 
+if (!songs.ja.find((song) => song.id === "tuki-bansanka")) {
+  throw new Error("解密後找不到 晩餐歌");
+}
+
 console.log("test_encryption.js ok");
